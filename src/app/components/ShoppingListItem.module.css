@@ -1,0 +1,151 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.item:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.completed {
+  background: #f8f9fa;
+  opacity: 0.7;
+}
+
+.completed .itemName {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+.checkboxContainer {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.checkbox:checked + .checkboxLabel {
+  background: #007bff;
+}
+
+.checkbox:checked + .checkboxLabel::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  top: -2px;
+  left: 2px;
+}
+
+.itemContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.itemName {
+  font-weight: 500;
+  color: #333;
+}
+
+.quantity {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.removeBtn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.removeBtn:hover {
+  background: #c82333;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .item {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+  
+  .checkboxContainer {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .checkboxLabel {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .checkbox:checked + .checkboxLabel::after {
+    font-size: 12px;
+    top: -1px;
+    left: 2px;
+  }
+  
+  .itemName {
+    font-size: 0.95rem;
+  }
+  
+  .quantity {
+    font-size: 0.8rem;
+  }
+  
+  .removeBtn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .itemName {
+    font-size: 0.9rem;
+  }
+  
+  .removeBtn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
+}
