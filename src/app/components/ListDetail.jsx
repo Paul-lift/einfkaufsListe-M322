@@ -2,6 +2,7 @@
 import React from "react";
 import Checkliste from "./Checkliste";
 import styles from "./ListDetail.module.css";
+import WaveInput from "./WaveInput";
 
 export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem }) {
   if (!list) {
@@ -33,13 +34,13 @@ export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem
           e.target.reset();
         }
       }} className={styles.addItemForm}>
-        <input 
-          name="itemName" 
-          placeholder="Neues Produkt" 
-          required 
-          className={styles.input} 
+        <WaveInput
+          name="itemName"
+          label="Neues Produkt"
+          required
         />
-        <input 
+        <div className={styles.quantityAndAdd}>
+          <input 
           name="quantity" 
           type="number" 
           min="1" 
@@ -47,6 +48,7 @@ export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem
           className={styles.quantityInput} 
         />
         <button type="submit" className={styles.addButton}>Hinzufügen</button>
+        </div>
       </form>
 
       <Checkliste 
