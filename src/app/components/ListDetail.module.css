@@ -1,7 +1,7 @@
 .container {
   flex: 1;
   padding: 2rem;
-  background: #fff;
+  background: var(--bg-primary);
 }
 
 .noSelection {
@@ -9,18 +9,18 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: #6c757d;
+  color: var(--text-secondary);
 }
 
 .header {
   margin-bottom: 2rem;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 1rem;
 }
 
 .title {
   margin: 0 0 0.5rem 0;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .stats {
@@ -30,8 +30,8 @@
 
 .totalItems, .completedItems {
   font-size: 0.875rem;
-  color: #6c757d;
-  background: #f8f9fa;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
@@ -41,34 +41,39 @@
   gap: 0.5rem;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   border-radius: 8px;
 }
 
 .input {
   flex: 1;
   padding: 0.5rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .quantityInput {
   width: 80px;
   padding: 0.5rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .addButton {
-  background: #28a745;
+  background: var(--accent-success);
   color: white;
   border: none;
   border-radius: 4px;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 1rem;
+  transition: background-color 0.2s ease;
 }
 
 .addButton:hover {
@@ -76,12 +81,12 @@
 }
 
 .itemList {
-  background: #fff;
+  background: var(--bg-primary);
 }
 
 .emptyMessage {
   text-align: center;
-  color: #6c757d;
+  color: var(--text-secondary);
   font-style: italic;
   padding: 2rem;
 }

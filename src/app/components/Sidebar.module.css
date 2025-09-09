@@ -1,7 +1,7 @@
 .sidebar {
   width: 300px;
-  background: #f8f9fa;
-  border-right: 1px solid #dee2e6;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
   padding: 1rem;
   height: 100vh;
   overflow-y: auto;
@@ -9,7 +9,7 @@
 
 .title {
   margin: 0 0 1rem 0;
-  color: #333;
+  color: var(--text-primary);
   font-size: 1.2rem;
 }
 
@@ -24,32 +24,33 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem;
-  background: #fff;
+  background: var(--bg-primary);
   border-radius: 6px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-light);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .listItem:hover {
-  background: #e9ecef;
-  border-color: #adb5bd;
+  background: var(--bg-hover);
+  border-color: var(--border-color);
 }
 
 .listItem.active {
-  background: #007bff;
+  background: var(--accent-primary);
   color: white;
-  border-color: #0056b3;
+  border-color: var(--accent-primary);
 }
 
 .listName {
   font-weight: 500;
   flex-grow: 1;
+  color: inherit;
 }
 
 .itemCount {
   font-size: 0.875rem;
-  color: #6c757d;
+  color: var(--text-secondary);
   margin-left: 0.5rem;
 }
 
@@ -58,7 +59,7 @@
 }
 
 .deleteBtn {
-  background: #dc3545;
+  background: var(--accent-danger);
   color: white;
   border: none;
   border-radius: 50%;
@@ -70,6 +71,7 @@
   cursor: pointer;
   font-size: 14px;
   margin-left: 0.5rem;
+  transition: background-color 0.2s ease;
 }
 
 .deleteBtn:hover {

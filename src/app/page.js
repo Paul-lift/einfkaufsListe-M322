@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import ShoppingListForm from "./components/ShoppingListForm";
 import Sidebar from "./components/Sidebar";
 import ListDetail from "./components/ListDetail";
+import DarkModeToggle from "./components/DarkModeToggle";
 import { useShoppingLists } from "./lib/shoppingList";
 
 export default function Page() {
@@ -23,7 +24,10 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Einkaufslisten Manager</h1>
+        <div className={styles.headerTop}>
+          <h1 className={styles.title}>Einkaufslisten Manager</h1>
+          <DarkModeToggle />
+        </div>
         <ShoppingListForm onCreate={(name) => {
           const newList = createList(name);
           setSelectedListId(newList.id);
