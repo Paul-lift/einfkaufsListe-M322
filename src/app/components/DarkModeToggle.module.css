@@ -2,28 +2,51 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 25px;
-  padding: 0.5rem 1rem;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  padding: 0.75rem 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 0.9rem;
   color: var(--text-primary);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .toggle:hover {
-  background: var(--bg-hover);
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-primary);
+  color: white;
+}
+
+.toggle:hover::before {
+  opacity: 1;
 }
 
 .icon {
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .toggle:hover .icon {
-  transform: rotate(20deg);
+  transform: rotate(360deg) scale(1.1);
 }
 
 .text {
