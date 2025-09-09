@@ -1,0 +1,149 @@
+.container {
+  flex: 1;
+  padding: 2rem;
+  background: #fff;
+}
+
+.noSelection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6c757d;
+}
+
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1rem;
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.totalItems, .completedItems {
+  font-size: 0.875rem;
+  color: #6c757d;
+  background: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.addItemForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.quantityInput {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.addButton {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.addButton:hover {
+  background: #218838;
+}
+
+.itemList {
+  background: #fff;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  
+  .header {
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .stats {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .totalItems, .completedItems {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .addItemForm {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .input, .quantityInput {
+    width: 100%;
+    font-size: 16px; /* Verhindert Zoom auf iOS */
+  }
+  
+  .quantityInput {
+    width: 100%;
+  }
+  
+  .addButton {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  .noSelection {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .noSelection h2 {
+    font-size: 1rem;
+  }
+}
