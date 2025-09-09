@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import ShoppingListForm from "./components/ShoppingListForm";
 import Sidebar from "./components/Sidebar";
 import ListDetail from "./components/ListDetail";
 import DarkModeToggle from "./components/DarkModeToggle";
+import Loader from "./components/loader";
 import { useShoppingLists } from "./lib/shoppingList";
 
 export default function Page() {
@@ -19,7 +20,32 @@ export default function Page() {
   } = useShoppingLists();
 
   const [selectedListId, setSelectedListId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const selectedList = selectedListId ? getList(selectedListId) : null;
+
+  useEffect(() => {
+    // Mindestens 5 Sekunden Loading anzeigen
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 6767);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Loader anzeigen, wenn noch geladen wird
+  if (isLoading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        backgroundColor: 'var(--background-color, #111)'
+      }}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
