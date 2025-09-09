@@ -1,35 +1,57 @@
 .form {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0;
+  gap: 1rem;
+  align-items: center;
 }
 
 .input {
-  padding: 0.4rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
   background: var(--bg-primary);
   color: var(--text-primary);
-  transition: border-color 0.2s ease;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 .button {
-  background: var(--accent-success);
+  background: var(--gradient-primary);
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 0.4rem 1rem;
+  border-radius: var(--border-radius-md);
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.button::before {
+  content: "📝";
+  font-size: 0.9rem;
 }
 
 .button:hover {
-  background: #218838;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Mobile Responsive */

@@ -1,101 +1,187 @@
 .container {
   flex: 1;
-  padding: 2rem;
-  background: var(--bg-primary);
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .noSelection {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 400px;
   color: var(--text-secondary);
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  padding: 2rem;
+}
+
+.noSelection::before {
+  content: "🛍️";
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
 }
 
 .header {
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 1rem;
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 }
 
 .title {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 1rem 0;
   color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title::before {
+  content: "🗂️";
+  font-size: 1.2rem;
 }
 
 .stats {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .totalItems, .completedItems {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  background: var(--bg-secondary);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-xl);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.completedItems {
+  background: var(--accent-success);
 }
 
 .addItemForm {
   display: flex;
   justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: var(--bg-secondary);
-  border-radius: 8px;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.quantityAndAdd{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .input {
   flex: 1;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
   font-size: 1rem;
   background: var(--bg-primary);
   color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .quantityInput {
-  width: 80px;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  width: 100px;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
   font-size: 1rem;
   background: var(--bg-primary);
   color: var(--text-primary);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.quantityInput:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .addButton {
-  background: var(--accent-success);
+  background: var(--gradient-success);
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.2s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addButton::before {
+  content: "➕";
+  font-size: 0.9rem;
 }
 
 .addButton:hover {
-  background: #218838;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .itemList {
-  background: var(--bg-primary);
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
 }
 
 .emptyMessage {
   text-align: center;
   color: var(--text-secondary);
   font-style: italic;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.emptyMessage::before {
+  content: "📝";
+  font-size: 3rem;
+  opacity: 0.3;
 }
 
 .items {
   list-style: none;
-  padding: 0;
+  padding: 1rem;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 /* Mobile Responsive */
