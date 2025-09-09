@@ -3,25 +3,25 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-light);
   border-radius: 6px;
   margin-bottom: 0.5rem;
-  background: #fff;
+  background: var(--bg-primary);
   transition: all 0.2s ease;
 }
 
 .item:hover {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px var(--shadow-medium);
 }
 
 .completed {
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   opacity: 0.7;
 }
 
 .completed .itemName {
   text-decoration: line-through;
-  color: #6c757d;
+  color: var(--text-secondary);
 }
 
 .checkboxContainer {
@@ -43,15 +43,15 @@
   left: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid #007bff;
+  border: 2px solid var(--accent-primary);
   border-radius: 4px;
   cursor: pointer;
-  background: #fff;
+  background: var(--bg-primary);
   transition: all 0.2s ease;
 }
 
 .checkbox:checked + .checkboxLabel {
-  background: #007bff;
+  background: var(--accent-primary);
 }
 
 .checkbox:checked + .checkboxLabel::after {
@@ -72,16 +72,16 @@
 
 .itemName {
   font-weight: 500;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .quantity {
   font-size: 0.875rem;
-  color: #6c757d;
+  color: var(--text-secondary);
 }
 
 .removeBtn {
-  background: #dc3545;
+  background: var(--accent-danger);
   color: white;
   border: none;
   border-radius: 4px;
@@ -89,6 +89,7 @@
   cursor: pointer;
   font-size: 0.875rem;
   flex-shrink: 0;
+  transition: background-color 0.2s ease;
 }
 
 .removeBtn:hover {
