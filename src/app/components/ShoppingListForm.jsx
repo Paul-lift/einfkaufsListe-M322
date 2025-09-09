@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./ShoppingListForm.module.css";
+import WaveInput from "./WaveInput";
 
 export default function ShoppingListForm({ onCreate }) {
   const [name, setName] = useState("");
@@ -15,11 +16,10 @@ export default function ShoppingListForm({ onCreate }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <input
-        className={styles.input}
+      <WaveInput
         value={name}
         onChange={e => setName(e.target.value)}
-        placeholder="Neue Liste"
+        label="Neue Liste"
         required
       />
       <button type="submit" className={styles.button}>Liste erstellen</button>
