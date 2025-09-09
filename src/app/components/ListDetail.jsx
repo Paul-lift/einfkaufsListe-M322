@@ -1,10 +1,25 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Checkliste from "./Checkliste";
+import DuplicateItemModal from "./DuplicateItemModal";
 import styles from "./ListDetail.module.css";
 import WaveInput from "./WaveInput";
 
-export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem }) {
+export default function ListDetail({ 
+  list, 
+  onAddItem, 
+  onCheckDuplicate, 
+  onIncreaseQuantity, 
+  onRemoveItem, 
+  onToggleItem 
+}) {
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    itemName: '',
+    quantity: 1,
+    existingItem: null
+  });
+
   if (!list) {
     return (
       <div className={styles.noSelection}>
@@ -12,6 +27,45 @@ export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem
       </div>
     );
   }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.itemName.value.trim();
+    const quantity = Number(e.target.quantity.value) || 1;
+    
+    if (!name) return;
+
+    // Prüfe auf Duplikat
+    const existingItem = onCheckDuplicate(list.id, name);
+    
+    if (existingItem) {
+      // Zeige Modal für Duplikat
+      setModalState({
+        isOpen: true,
+        itemName: name,
+        quantity: quantity,
+        existingItem: existingItem
+      });
+    } else {
+      // Füge Item direkt hinzu
+      onAddItem(list.id, name, quantity);
+      e.target.reset();
+    }
+  };
+
+  const handleIncreaseQuantity = () => {
+    onIncreaseQuantity(list.id, modalState.existingItem.id, modalState.quantity);
+    setModalState({ isOpen: false, itemName: '', quantity: 1, existingItem: null });
+  };
+
+  const handleAddAnyway = () => {
+    onAddItem(list.id, modalState.itemName, modalState.quantity);
+    setModalState({ isOpen: false, itemName: '', quantity: 1, existingItem: null });
+  };
+
+  const handleCancel = () => {
+    setModalState({ isOpen: false, itemName: '', quantity: 1, existingItem: null });
+  };
 
   return (
     <div className={styles.container}>
@@ -25,15 +79,7 @@ export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem
         </div>
       </div>
 
-      <form onSubmit={e => {
-        e.preventDefault();
-        const name = e.target.itemName.value;
-        const quantity = Number(e.target.quantity.value) || 1;
-        if (name) {
-          onAddItem(list.id, name, quantity);
-          e.target.reset();
-        }
-      }} className={styles.addItemForm}>
+      <form onSubmit={handleFormSubmit} className={styles.addItemForm}>
         <WaveInput
           name="itemName"
           label="Neues Produkt"
@@ -55,6 +101,15 @@ export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem
         items={list.items} 
         onToggleItem={itemId => onToggleItem(list.id, itemId)}
         onRemoveItem={itemId => onRemoveItem(list.id, itemId)}
+      />
+
+      <DuplicateItemModal
+        isOpen={modalState.isOpen}
+        itemName={modalState.itemName}
+        existingItem={modalState.existingItem}
+        onIncreaseQuantity={handleIncreaseQuantity}
+        onAddAnyway={handleAddAnyway}
+        onCancel={handleCancel}
       />
     </div>
   );

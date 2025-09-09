@@ -16,6 +16,8 @@ export default function Page() {
     createList,
     deleteList,
     addItem,
+    checkDuplicateItem,
+    increaseItemQuantity,
     removeItem,
     toggleItem,
     getList
@@ -96,6 +98,8 @@ export default function Page() {
         <ListDetail
           list={selectedList}
           onAddItem={addItem}
+          onCheckDuplicate={checkDuplicateItem}
+          onIncreaseQuantity={increaseItemQuantity}
           onRemoveItem={removeItem}
           onToggleItem={toggleItem}
         />
