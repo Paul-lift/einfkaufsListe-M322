@@ -37,9 +37,10 @@
 .content {
   display: flex;
   flex: 1;
-  gap: 1rem;
-  padding: 1rem;
-  overflow: hidden;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  min-height: calc(100vh - 140px);
+  align-items: stretch;
 }
 
 /* Mobile Responsive */
@@ -58,6 +59,9 @@
   
   .content {
     flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    min-height: calc(100vh - 120px);
   }
 }
 
