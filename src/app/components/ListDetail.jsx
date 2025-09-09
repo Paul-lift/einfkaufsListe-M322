@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ShoppingListItem from "./ShoppingListItem";
+import Checkliste from "./Checkliste";
 import styles from "./ListDetail.module.css";
 
 export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem }) {
@@ -49,22 +49,11 @@ export default function ListDetail({ list, onAddItem, onRemoveItem, onToggleItem
         <button type="submit" className={styles.addButton}>Hinzufügen</button>
       </form>
 
-      <div className={styles.itemList}>
-        {list.items.length === 0 ? (
-          <p className={styles.emptyMessage}>Noch keine Items in dieser Liste</p>
-        ) : (
-          <ul className={styles.items}>
-            {list.items.map(item => (
-              <ShoppingListItem
-                key={item.id}
-                item={item}
-                onRemove={() => onRemoveItem(list.id, item.id)}
-                onToggle={() => onToggleItem(list.id, item.id)}
-              />
-            ))}
-          </ul>
-        )}
-      </div>
+      <Checkliste 
+        items={list.items} 
+        onToggleItem={itemId => onToggleItem(list.id, itemId)}
+        onRemoveItem={itemId => onRemoveItem(list.id, itemId)}
+      />
     </div>
   );
 }
