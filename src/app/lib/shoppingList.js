@@ -32,15 +32,31 @@ export function useShoppingLists() {
     setLists(prev => prev.filter(list => list.id !== listId));
   }
 
+  // Verfügbare Kategorien
+  const categories = [
+    { id: 'fruits-vegetables', name: '🥬 Obst & Gemüse', order: 1 },
+    { id: 'meat-fish', name: '🥩 Fleisch & Fisch', order: 2 },
+    { id: 'dairy', name: '🥛 Milchprodukte', order: 3 },
+    { id: 'bakery', name: '🍞 Bäckerei', order: 4 },
+    { id: 'frozen', name: '❄️ Tiefkühl', order: 5 },
+    { id: 'pantry', name: '🥫 Vorratskammer', order: 6 },
+    { id: 'beverages', name: '🥤 Getränke', order: 7 },
+    { id: 'snacks', name: '🍿 Snacks', order: 8 },
+    { id: 'household', name: '🧽 Haushalt', order: 9 },
+    { id: 'personal-care', name: '🧴 Körperpflege', order: 10 },
+    { id: 'other', name: '📦 Sonstiges', order: 11 }
+  ];
+
   // Item zu Liste hinzufügen
-  function addItem(listId, itemName, quantity = 1) {
+  function addItem(listId, itemName, quantity = 1, categoryId = 'other') {
     setLists(prev => prev.map(list => {
       if (list.id === listId) {
         const newItem = {
           id: Date.now() + Math.random(), // Eindeutige ID
           name: itemName,
           quantity: quantity,
-          completed: false
+          completed: false,
+          category: categoryId
         };
         return { ...list, items: [...list.items, newItem] };
       }
@@ -105,8 +121,42 @@ export function useShoppingLists() {
     return lists.find(list => list.id === listId);
   }
 
+  // Items nach Kategorien sortiert abrufen
+  function getSortedItems(listId) {
+    const list = getList(listId);
+    if (!list) return [];
+
+    // Gruppiere Items nach Kategorien
+    const itemsByCategory = {};
+    list.items.forEach(item => {
+      const categoryId = item.category || 'other';
+      if (!itemsByCategory[categoryId]) {
+        itemsByCategory[categoryId] = [];
+      }
+      itemsByCategory[categoryId].push(item);
+    });
+
+    // Sortiere Kategorien und Items
+    const sortedItems = [];
+    categories
+      .sort((a, b) => a.order - b.order)
+      .forEach(category => {
+        if (itemsByCategory[category.id]) {
+          sortedItems.push(...itemsByCategory[category.id]);
+        }
+      });
+
+    return sortedItems;
+  }
+
+  // Kategorie-Info abrufen
+  function getCategoryInfo(categoryId) {
+    return categories.find(cat => cat.id === categoryId) || categories.find(cat => cat.id === 'other');
+  }
+
   return {
     lists,
+    categories,
     createList,
     deleteList,
     addItem,
@@ -114,6 +164,8 @@ export function useShoppingLists() {
     increaseItemQuantity,
     removeItem,
     toggleItem,
-    getList
+    getList,
+    getSortedItems,
+    getCategoryInfo
   };
 }

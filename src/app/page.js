@@ -13,6 +13,7 @@ import { useShoppingLists } from "./lib/shoppingList";
 export default function Page() {
   const {
     lists,
+    categories,
     createList,
     deleteList,
     addItem,
@@ -20,7 +21,9 @@ export default function Page() {
     increaseItemQuantity,
     removeItem,
     toggleItem,
-    getList
+    getList,
+    getSortedItems,
+    getCategoryInfo
   } = useShoppingLists();
 
   const [selectedListId, setSelectedListId] = useState(null);
@@ -97,11 +100,14 @@ export default function Page() {
         />
         <ListDetail
           list={selectedList}
+          categories={categories}
           onAddItem={addItem}
           onCheckDuplicate={checkDuplicateItem}
           onIncreaseQuantity={increaseItemQuantity}
           onRemoveItem={removeItem}
           onToggleItem={toggleItem}
+          getSortedItems={getSortedItems}
+          getCategoryInfo={getCategoryInfo}
         />
       </div>
     </div>
