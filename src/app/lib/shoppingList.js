@@ -48,6 +48,33 @@ export function useShoppingLists() {
     }));
   }
 
+  // Prüfe ob Item bereits existiert
+  function checkDuplicateItem(listId, itemName) {
+    const list = getList(listId);
+    if (!list) return null;
+    
+    return list.items.find(item => 
+      item.name.toLowerCase().trim() === itemName.toLowerCase().trim()
+    );
+  }
+
+  // Erhöhe Menge eines bestehenden Items
+  function increaseItemQuantity(listId, itemId, increaseBy = 1) {
+    setLists(prev => prev.map(list => {
+      if (list.id === listId) {
+        return {
+          ...list,
+          items: list.items.map(item =>
+            item.id === itemId 
+              ? { ...item, quantity: item.quantity + increaseBy }
+              : item
+          )
+        };
+      }
+      return list;
+    }));
+  }
+
   // Item aus Liste entfernen
   function removeItem(listId, itemId) {
     setLists(prev => prev.map(list => {
@@ -83,6 +110,8 @@ export function useShoppingLists() {
     createList,
     deleteList,
     addItem,
+    checkDuplicateItem,
+    increaseItemQuantity,
     removeItem,
     toggleItem,
     getList
