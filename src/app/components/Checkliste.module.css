@@ -18,6 +18,43 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.categorySection {
+  margin-bottom: 2rem;
+}
+
+.categorySection:last-child {
+  margin-bottom: 0;
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-md);
+  border-left: 4px solid var(--accent-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.categoryCount {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  background: var(--bg-card);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.categoryItems {
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-color);
+  margin-left: 1rem;
+}
+
 .checklistRow {
   display: flex;
   align-items: center;

@@ -7,16 +7,20 @@ import WaveInput from "./WaveInput";
 
 export default function ListDetail({ 
   list, 
+  categories,
   onAddItem, 
   onCheckDuplicate, 
   onIncreaseQuantity, 
   onRemoveItem, 
-  onToggleItem 
+  onToggleItem,
+  getSortedItems,
+  getCategoryInfo
 }) {
   const [modalState, setModalState] = useState({
     isOpen: false,
     itemName: '',
     quantity: 1,
+    category: 'other',
     existingItem: null
   });
 
@@ -32,6 +36,7 @@ export default function ListDetail({
     e.preventDefault();
     const name = e.target.itemName.value.trim();
     const quantity = Number(e.target.quantity.value) || 1;
+    const category = e.target.category.value || 'other';
     
     if (!name) return;
 
@@ -44,27 +49,28 @@ export default function ListDetail({
         isOpen: true,
         itemName: name,
         quantity: quantity,
+        category: category,
         existingItem: existingItem
       });
     } else {
       // Füge Item direkt hinzu
-      onAddItem(list.id, name, quantity);
+      onAddItem(list.id, name, quantity, category);
       e.target.reset();
     }
   };
 
   const handleIncreaseQuantity = () => {
     onIncreaseQuantity(list.id, modalState.existingItem.id, modalState.quantity);
-    setModalState({ isOpen: false, itemName: '', quantity: 1, existingItem: null });
+    setModalState({ isOpen: false, itemName: '', quantity: 1, category: 'other', existingItem: null });
   };
 
   const handleAddAnyway = () => {
-    onAddItem(list.id, modalState.itemName, modalState.quantity);
-    setModalState({ isOpen: false, itemName: '', quantity: 1, existingItem: null });
+    onAddItem(list.id, modalState.itemName, modalState.quantity, modalState.category);
+    setModalState({ isOpen: false, itemName: '', quantity: 1, category: 'other', existingItem: null });
   };
 
   const handleCancel = () => {
-    setModalState({ isOpen: false, itemName: '', quantity: 1, existingItem: null });
+    setModalState({ isOpen: false, itemName: '', quantity: 1, category: 'other', existingItem: null });
   };
 
   return (
@@ -85,22 +91,30 @@ export default function ListDetail({
           label="Neues Produkt"
           required
         />
-        <div className={styles.quantityAndAdd}>
+        <div className={styles.formRow}>
+          <select name="category" className={styles.categorySelect} defaultValue="other">
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
           <input 
-          name="quantity" 
-          type="number" 
-          min="1" 
-          defaultValue="1" 
-          className={styles.quantityInput} 
-        />
-        <button type="submit" className={styles.addButton}>Hinzufügen</button>
+            name="quantity" 
+            type="number" 
+            min="1" 
+            defaultValue="1" 
+            className={styles.quantityInput} 
+          />
+          <button type="submit" className={styles.addButton}>Hinzufügen</button>
         </div>
       </form>
 
       <Checkliste 
-        items={list.items} 
+        items={getSortedItems(list.id)} 
         onToggleItem={itemId => onToggleItem(list.id, itemId)}
         onRemoveItem={itemId => onRemoveItem(list.id, itemId)}
+        getCategoryInfo={getCategoryInfo}
       />
 
       <DuplicateItemModal

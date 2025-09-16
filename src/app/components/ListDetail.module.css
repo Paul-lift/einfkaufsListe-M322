@@ -109,6 +109,36 @@
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+.quantityAndAdd {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.formRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.categorySelect {
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  min-width: 180px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.categorySelect:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-primary-alpha);
+}
+
 .quantityInput {
   width: 100px;
   padding: 0.75rem 1rem;
