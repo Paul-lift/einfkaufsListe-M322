@@ -38,7 +38,7 @@ export default function Page() {
     // Mindestens 5 Sekunden Loading anzeigen
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 6767);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
